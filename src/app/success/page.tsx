@@ -13,10 +13,6 @@ import Stripe from "stripe";
 import { Logo } from "@/components/Logo";
 import { FadeIn } from "@/components/FadeIn";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-08-27.basil",
-});
-
 export const metadata: Metadata = {
   title: "Order Confirmation | FLEX Keyboards",
   description:
@@ -64,6 +60,9 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
 
   // Fetch session details from Stripe
   try {
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: "2025-08-27.basil",
+    });
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     const orderDetails = {

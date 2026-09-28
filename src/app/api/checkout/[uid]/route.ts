@@ -3,15 +3,23 @@ import { asText } from "@prismicio/client";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-08-27.basil",
-});
-
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ uid: string }> },
 ) {
   try {
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+    if (!stripeSecretKey) {
+      return NextResponse.json(
+        { error: "Checkout is not configured" },
+        { status: 503 },
+      );
+    }
+
+    const stripe = new Stripe(stripeSecretKey, {
+      apiVersion: "2025-08-27.basil",
+    });
+
     const { uid } = await params;
 
     if (!uid) {
