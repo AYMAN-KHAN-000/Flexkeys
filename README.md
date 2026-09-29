@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <a href="https://github.com/Itssanthoshhere/FLEX-Keyboard-3D" target="_blank">
+  <a href="https://github.com/ayman-khan-000/FLEX-Keyboard-3D" target="_blank">
     <img src="public/Readme/flexThumbnail.jpg" alt="Project Banner">
   </a>
   <br />
